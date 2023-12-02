@@ -1,11 +1,16 @@
-import React from 'react';
+import { Flex, Spin } from "antd";
 
 const Loading = () => {
-    return (
-        <div>
-           <h1>loading...</h1> 
-        </div>
-    );
+  return (
+    <Flex  vertical justify="center" align="middle"
+    style={{
+        height:"100vh"
+    }}>
+      <Spin tip="Loading" size="large">
+        <div className="content" />
+      </Spin>
+    </Flex>
+  );
 };
 
 export default Loading;

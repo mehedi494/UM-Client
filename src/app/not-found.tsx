@@ -1,9 +1,16 @@
-
+import Image from "next/image";
+import errorImage from "../assets/404-error.gif"
 
 const NotFoundPage = () => {
     return (
-        <div>
-<h1>404!!! Page Not Found! </h1>            
+        <div style={{
+            width:"100%",
+            display:"flex",
+            justifyContent:"center",
+            alignItems:"center",
+            height:"100vh"
+        }}>
+<Image src={errorImage} alt="error"></Image>           
         </div>
     );
 };

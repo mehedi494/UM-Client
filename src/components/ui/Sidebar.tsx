@@ -2,26 +2,27 @@
 
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
-import { useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
-
-import { USER_ROLE } from "@/constants/role";
 import { sidebarItems } from "@/constants/sidebarItems";
-
-
-
-
-
+import { getUserInfo } from "@/services/auth.service";
+import Styles from "../../app/css/Sider.module.css";
 
 const Sidebar = () => {
+
   const [collapsed, setCollapsed] = useState(false);
-  const role = USER_ROLE.ADMIN;
+
+  const { role } = getUserInfo() as any;
+  console.log(role);
+
+
+ 
   return (
     <Sider
       collapsible
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
-      width={280}
+      max-width={250}
       style={{
         overflow: "auto",
         height: "100vh",
@@ -30,16 +31,17 @@ const Sidebar = () => {
         top: 0,
         bottom: 0,
       }}>
-      <div
+      <div 
         style={{
           color: "white",
           fontSize: "1.5rem",
           textAlign: "center",
           fontWeight: "bold",
+          marginTop: "1rem",
           marginBottom: "1rem",
         }}
-        className="demo-logo-vertical">
-        PH-UNIVERSITY{" "}
+        className={Styles.logo}>
+        UMS
       </div>
       <Menu
         theme="dark"
