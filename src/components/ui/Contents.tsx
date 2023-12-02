@@ -9,15 +9,11 @@ const Contents = ({ children }: { children: React.ReactNode }) => {
     <Content
       style={{
         minHeight: "100vh",
+        
       }}>
         <Header/>
-      <UMBBreadCrumb
-        items={[
-          { label: `${base}`, link: `/${base}` },
-          { label: `student`, link: `/${base}` },
-        ]}
-      />
-      {children}
+      
+     <div style={{padding:"1rem"}}> {children}</div>
     </Content>
   );
 };

@@ -43,7 +43,7 @@ const Header = () => {
         }}>
         <Dropdown menu={{ items }}>
           <Space wrap size={16}>
-            <Badge count={1}>
+            <Badge dot>
               <Avatar shape="circle" size="large" icon={<UserOutlined />} />
             </Badge>
           </Space>

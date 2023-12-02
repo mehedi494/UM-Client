@@ -1,12 +1,12 @@
 import {
   AppstoreOutlined,
-  ProfileOutlined,
-  TableOutlined,
-  UserOutlined,
-  ScheduleOutlined,
-  ThunderboltOutlined,
   CreditCardOutlined,
-  FileTextOutlined
+  FileTextOutlined,
+  ProfileOutlined,
+  ScheduleOutlined,
+  TableOutlined,
+  ThunderboltOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import Link from "next/link";
@@ -19,8 +19,8 @@ export const sidebarItems = (role: string) => {
       icon: <UserOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/profile`}>Account Profile</Link>,
-          key: `/${role}/profile`,
+          label: <Link href={`/${role}`}>Account Profile</Link>,
+          key: `/${role}`,
           icon: <ProfileOutlined />,
         },
         {
@@ -89,11 +89,11 @@ export const sidebarItems = (role: string) => {
   const superAdminSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
     ...commonAdminSidebarItems,
-    {
-      label: "Manage Academic",
-      key: "manage-academic",
-      icon: <TableOutlined />,
-    },
+    // {
+    //   label: "Manage Academic",
+    //   key: "manage-academic",
+    //   icon: <TableOutlined />,
+    // },
     {
       label: <Link href={`/${role}/admin`}>Manage Admin</Link>,
       icon: <TableOutlined />,
@@ -103,17 +103,18 @@ export const sidebarItems = (role: string) => {
       label: <Link href={`/${role}/user`}>Manage User</Link>,
       icon: <TableOutlined />,
       key: `/${role}/academic/department`,
-    },{
-      label: "Manage Permission",
-      key: `manage-permission`,
-      icon: <AppstoreOutlined />,
-      children: [
-        {
-          label: <Link href={`${role}/permission`}>View Permission</Link>,
-          key: `/${role}/permission`,
-        },
-      ],
     },
+    // {
+    //   label: "Manage Permission",
+    //   key: `manage-permission`,
+    //   icon: <AppstoreOutlined />,
+    //   children: [
+    //     {
+    //       label: <Link href={`${role}/permission`}>View Permission</Link>,
+    //       key: `/${role}/permission`,
+    //     },
+    //   ],
+    // },
     {
       label: "Managment",
       key: "managment",

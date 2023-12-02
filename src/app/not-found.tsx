@@ -1,5 +1,5 @@
 import Image from "next/image";
-import errorImage from "../assets/404-error.gif"
+import errorImage from "../assets/404-not-found.gif"
 
 const NotFoundPage = () => {
     return (

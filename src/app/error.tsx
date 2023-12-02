@@ -6,12 +6,13 @@ import Image from "next/image";
 const ErrorPage = () => {
   return (
     <Row
+    
       justify="center"
       align="middle"
       style={{
         height: "100vh",
       }}>
-      <Image src={errorImg} alt="error-page" width={100}></Image>
+      <Image priority src={errorImg} alt="error-page" width={600}></Image>
     </Row>
   );
 };
