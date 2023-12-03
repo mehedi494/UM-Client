@@ -1,6 +1,6 @@
 import { authKey } from "@/constants/storageKey";
-import { removeUserInfo } from "@/services/auth.service";
-import { UserOutlined } from "@ant-design/icons";
+import { getUserInfo, removeUserInfo } from "@/services/auth.service";
+import { UserOutlined ,LogoutOutlined} from "@ant-design/icons";
 import {
   Avatar,
   Badge,
@@ -12,9 +12,11 @@ import {
   Space,
 } from "antd";
 import { useRouter } from "next/navigation";
+
 const { Header: AntHeader } = Layout;
 
 const Header = () => {
+  const { role } = getUserInfo() as any;
   const router = useRouter();
   const logOut = () => {
     removeUserInfo(authKey);
@@ -22,10 +24,17 @@ const Header = () => {
   };
   const items: MenuProps["items"] = [
     {
+      key: "1",
+      label: <p style={{
+        color:"gray"
+      }}><UserOutlined /> {role}</p>,
+    },
+
+    {
       key: "0",
       label: (
         <Button onClick={logOut} type="text" danger>
-          Log out
+        <LogoutOutlined />  Log out
         </Button>
       ),
     },

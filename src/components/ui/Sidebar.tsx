@@ -6,14 +6,14 @@ import { useEffect, useRef, useState } from 'react';
 
 import { sidebarItems } from "@/constants/sidebarItems";
 import { getUserInfo } from "@/services/auth.service";
-import Styles from "../../app/css/Sider.module.css";
+
 
 const Sidebar = () => {
 
   const [collapsed, setCollapsed] = useState(false);
 
   const { role } = getUserInfo() as any;
-  console.log(role);
+  // console.log(role);
 
 
  
@@ -40,7 +40,7 @@ const Sidebar = () => {
           marginTop: "1rem",
           marginBottom: "1rem",
         }}
-        className={Styles.logo}>
+        >
         UMS
       </div>
       <Menu

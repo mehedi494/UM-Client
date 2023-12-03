@@ -21,9 +21,10 @@ const Login = () => {
   if (isLoggedin()) {
     router.push("/profile");
   }
-
   const [userLogin] = useUserLoginMutation();
-  const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
+  
+  const onSubmit: SubmitHandler<FormValues> = async (
+    data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
       // console.log(res);
