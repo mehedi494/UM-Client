@@ -1,3 +1,4 @@
+"use client";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { Upload, message } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";

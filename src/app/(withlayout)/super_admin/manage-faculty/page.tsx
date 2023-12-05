@@ -5,7 +5,9 @@ const ManageFacultyPage = () => {
   return (
     <div>
       <h1>Manage Faculty Page</h1>
-      <Link href={`/super_admin/manage-student/create`}><Button>Create Faculty</Button></Link>
+      <Link href={`/super_admin/manage-faculty/create`}>
+        <Button>Create Faculty</Button>
+      </Link>
     </div>
   );
 };

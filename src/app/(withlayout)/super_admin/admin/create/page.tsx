@@ -1,9 +1,9 @@
 "use client";
-import Form from "@/components/forms/Form";
-import FormDatePicker from "@/components/forms/FormDatePicker";
-import FormInput from "@/components/forms/FormInput";
-import FormSelectField from "@/components/forms/FormSelectField";
-import FormTextArea from "@/components/forms/FormTextArea";
+import Form from "@/components/Forms/Form";
+import FormDatePicker from "@/components/Forms/FormDatePicker";
+import FormInput from "@/components/Forms/FormInput";
+import FormSelectField from "@/components/Forms/FormSelectField";
+import FormTextArea from "@/components/Forms/FormTextArea";
 import UMBBreadCrumb from "@/components/ui/UMBBreadCrumb";
 import UploadImage from "@/components/ui/UploadImage";
 import {
@@ -11,6 +11,8 @@ import {
   DepartmentOptions,
   GenderOptions,
 } from "@/constants/global";
+import { adminSchema } from "@/schema/admin";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row } from "antd";
 import Styles from "../../../../css/Admin.module.css";
 const { marginBottom } = Styles;
@@ -32,7 +34,7 @@ const CreateAdminPage = () => {
       />
       <h1>Create Admin Page</h1>
       <div>
-        <Form submitHandler={onSubmit}>
+        <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>
           <div
             style={{
               border: "1px solid #d9d9d9",

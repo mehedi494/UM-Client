@@ -1,10 +1,10 @@
 "use client";
 
 import { useUserLoginMutation } from "@/app/redux/api/authApi";
-import Form from "@/components/forms/Form";
-import FormInput from "@/components/forms/FormInput";
+import Form from "@/components/Forms/Form";
+import FormInput from "@/components/Forms/FormInput";
 import { isLoggedin, storeUserInfo } from "@/services/auth.service";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, message } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { SubmitHandler } from "react-hook-form";
@@ -22,14 +22,14 @@ const Login = () => {
     router.push("/profile");
   }
   const [userLogin] = useUserLoginMutation();
-  
-  const onSubmit: SubmitHandler<FormValues> = async (
-    data: any) => {
+
+  const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
-      // console.log(res);
-      if (res?.accessToken) {
+
+      if (res?.accessToken ) {
         router.push("/profile");
+        message.success("User logged in successfully");
       }
       storeUserInfo({ accessToken: res?.accessToken });
     } catch (error: any) {
