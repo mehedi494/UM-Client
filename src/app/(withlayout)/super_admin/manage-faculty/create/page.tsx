@@ -33,7 +33,8 @@ const CreateFaculty = () => {
       />
       <h1>Create faculty page</h1>
       <div>
-        <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>
+      {/* resolver={yupResolver(adminSchema)} */}
+        <Form submitHandler={onSubmit} >
           <div
             style={{
               border: "1px solid #d9d9d9",
@@ -119,7 +120,7 @@ const CreateFaculty = () => {
               </Col>
 
               <Col className="gutter-row" span={8}>
-                <UploadImage />
+                <UploadImage name="" />
               </Col>
             </Row>
           </div>

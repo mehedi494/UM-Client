@@ -1,4 +1,5 @@
 "use client";
+import { useDepartmentsQuery } from "@/app/redux/api/departmentApi";
 import Form from "@/components/Forms/Form";
 import FormDatePicker from "@/components/Forms/FormDatePicker";
 import FormInput from "@/components/Forms/FormInput";
@@ -6,20 +7,43 @@ import FormSelectField from "@/components/Forms/FormSelectField";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import UMBBreadCrumb from "@/components/ui/UMBBreadCrumb";
 import UploadImage from "@/components/ui/UploadImage";
-import {
-  BloodGroupOptions,
-  DepartmentOptions,
-  GenderOptions,
-} from "@/constants/global";
-import { adminSchema } from "@/schema/admin";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Col, Row } from "antd";
+import { BloodGroupOptions, GenderOptions } from "@/constants/global";
+import { IDepartments } from "@/types";
+import { Button, Col, Row, message } from "antd";
+
+import { useAddAdminWithFormDataMutation } from "@/app/redux/api/adminApi";
 import Styles from "../../../../css/Admin.module.css";
+
 const { marginBottom } = Styles;
 const CreateAdminPage = () => {
-  const onSubmit = async (data: any) => {
+  const { data, isLoading } = useDepartmentsQuery({ limit: 100, page: 1 });
+  const [addAdminWithFormData] = useAddAdminWithFormDataMutation();
+
+  // @ts-ignore
+  const departments: IDepartments[] | [] = data?.departments;
+
+  const DepartmentOptions = departments?.map((department) => {
+    return {
+      label: department.title,
+      value: department.id,
+    };
+  });
+
+  const onSubmit = async (values: any) => {
+    // console.log(values);
+    const obj = { ...values };
+    const file = obj["file"];
+    delete obj["file"];
+    const data = JSON.stringify(obj);
+    const formData = new FormData();
+    formData.append("file", file as Blob);
+    formData.append("data", data);
+
+    message.loading("Creating");
     try {
-      console.log(data);
+      await addAdminWithFormData(formData);
+      // console.log(data);
+      message.success("Admin created successfully!");
     } catch (error: any) {
       console.error(error);
     }
@@ -34,7 +58,9 @@ const CreateAdminPage = () => {
       />
       <h1>Create Admin Page</h1>
       <div>
-        <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>
+        <Form
+          submitHandler={onSubmit} /* resolver={yupResolver(adminSchema)} */
+        >
           <div
             style={{
               border: "1px solid #d9d9d9",
@@ -103,7 +129,7 @@ const CreateAdminPage = () => {
               <Col className={`gutter-row  ${marginBottom}`} span={8}>
                 <FormSelectField
                   options={DepartmentOptions}
-                  name="admin.managmentDepartment"
+                  name="admin.managementDepartment"
                   size="large"
                   label="Department"
                   placeholder="Select"
@@ -111,7 +137,7 @@ const CreateAdminPage = () => {
               </Col>
 
               <Col className={`gutter-row  ${marginBottom}`} span={8}>
-                <UploadImage />
+                <UploadImage name="file" />
               </Col>
             </Row>
           </div>

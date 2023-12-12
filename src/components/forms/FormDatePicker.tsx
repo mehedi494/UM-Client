@@ -25,7 +25,7 @@ const FormDatePicker = ({ name, label, onChange, size }: IDatePicker) => {
           <DatePicker style={{
             width:"100%"
           }}
-            value={dayjs(field.value) || null}
+            defaultValue={dayjs(field.value) || null}
             size={size}
             onChange={handleOnChange}
           />

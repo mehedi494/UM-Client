@@ -37,9 +37,17 @@ const FormSelectField = ({
         control={control}
         name={name}
         render={({ field: { value, onChange } }) => (
-          <Select style={{
-            width:"100%"
-          }} onChange={onChange} options={options} value={value} size={size} placeholder={placeholder} defaultValue={defaultValue} />
+          <Select
+            style={{
+              width: "100%",
+            }}
+            onChange={onChange}
+            options={options}
+            value={value}
+            size={size}
+            placeholder={placeholder}
+            defaultValue={defaultValue}
+          />
         )}
       />
     </>

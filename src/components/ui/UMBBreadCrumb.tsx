@@ -5,7 +5,7 @@ import Link from "next/link";
 const UMBBreadCrumb = ({
   items,
 }: {
-  items: { label: string; link: string }[];
+  items: { label: string; link?: string }[];
 }) => {
   const breadcrumbItems = [
     {

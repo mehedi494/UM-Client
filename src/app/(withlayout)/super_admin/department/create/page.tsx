@@ -1,15 +1,22 @@
 "use client";
+import { useAddDepartmentMutation } from "@/app/redux/api/departmentApi";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import UMBBreadCrumb from "@/components/ui/UMBBreadCrumb";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, message } from "antd";
 
 const CreateDepartment = () => {
+  const [addDepartment] = useAddDepartmentMutation();
+
   const onSubmit = async (data: any) => {
+    message.loading("Creating...")
     try {
+      await addDepartment(data);
+      message.success("Department added successfully");
       console.log(data);
     } catch (error: any) {
       console.error(error);
+      message.error(error.message);
     }
   };
   return (
@@ -34,14 +41,7 @@ const CreateDepartment = () => {
               marginBottom: "10px",
             }}>
             <Row style={{ width: "25%" }}>
-              <p
-                style={{
-                  fontSize: "18px",
-                  marginBottom: "10px",
-                  color: "GrayText",
-                }}>
-               Department List
-              </p>
+              
 
               <Col
                 className={`gutter-row `}
@@ -49,12 +49,7 @@ const CreateDepartment = () => {
                 style={{
                   marginBottom: "10px",
                 }}>
-                <FormInput
-                  type="text"
-                  name="department"
-                  size="large"
-                  
-                />
+                <FormInput type="text" name="title" size="large" label="Title" />
               </Col>
 
               <Button htmlType="submit" type="primary">
